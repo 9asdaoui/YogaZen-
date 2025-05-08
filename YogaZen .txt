@@ -1,0 +1,51 @@
+Contexte Métier : Gestion d’une École de Yoga en Ligne 
+YogaZen Academy veut un portail complet pour gérer ses cours, ses abonnés et vendre en direct, tout en continuant à proposer ses cours sur une boutique WooCommerce hébergée séparément. 
+Objectif Global 
+Le candidat devra mettre en œuvre : 
+1. Une API CRUD Laravel pour gérer les cours, enseignants, élèves et abonnements. 2. Un job planifié (cron) pour envoyer des rappels et archiver les comptes inactifs. 3. L’intégration avec WooCommerce : synchroniser produits et commandes via webhooks exposés localement avec ngrok. 
+4. Un front‑end Nuxt.js servant de portail pour élèves , (enseignants optionnel). 
+1. API CRUD Laravel 
+● Entités 
+○ Course : id, title, description, level, duration, price 
+○ Teacher : id, name, bio, specialties 
+○ Student : id, name, email, subscription_expires_at, status 
+○ Subscription : id, student_id, type, started_at, expires_at 
+● Fonctionnalités 
+○ CRUD complet pour chaque entité 
+○ Validation des données 
+○ Sécurisation des endpoints (JWT) 
+2. Planification de Tâches (Cron Job) 
+● Envoi quotidien de rappels 
+○ Job Laravel qui détecte les abonnements expirant sous 3 jours et envoie un e‑mail de rappel. 
+● Archivage des comptes inactifs 
+○ Dans le même job, archivage des comptes sans connexion depuis 12 mois. ● Journalisation 
+○ Stockage des actions (envoi, archivage) dans une table job_logs.
+3. Intégration WooCommerce + ngrok 
+● Pourquoi WooCommerce ? 
+○ Solution e‑commerce open‑source, gratuite et très répandue . 
+● Webhooks WooCommerce 
+○ WooCommerce permet de définir des webhooks pour les événements ordres, produits, clients, etc. 
+● Exposition locale 
+○ Démarrer ngrok http 8000 pour obtenir une URL publique pointant sur le serveur Laravel. 
+● Flux de synchronisation 
+○ WooCommerce envoie un POST à 
+https://<ngrok-id>.ngrok.io/api/woo/webhook à chaque nouvelle commande ou mise à jour de produit. 
+○ Laravel valide la requête. 
+○ Les données sont insérées ou mises à jour dans les tables products et orders locales. 
+4. Front‑End Nuxt.js et vuetify 
+● Fonctionnalités Élève 
+○ Catalogue paginé des cours avec filtres (niveau, durée) 
+○ Page détail d’un cours (description, enseignant, dates disponibles) ○ Formulaire d’inscription et gestion de l’abonnement 
+○ Tableau de bord affichant l’état de l’abonnement et l’historique des réservations 
+● Fonctionnalités Enseignant (optionnel) 
+○ Gestion du planning de cours (CRUD des créneaux) 
+○ Suivi des participants par cours
+5. Livrables et Critères d’Évaluation 
+1. Dépôt Git : deux répertoires backend/ et frontend/. 
+2. README décrivant : 
+○ Installation (Laravel, Nuxt.js) 
+○ Configuration du tunnel ngrok 
+Mise en place des webhooks WooCommerce 
+○ Lancement du scheduler Artisan ou cron système 
+3. Collection Postman couvrant tous les endpoints de l’API. 
+4. Maquettes ou captures d’écran du front‑end montrant les parcours clés (inscription, dashboard, catalogue)
