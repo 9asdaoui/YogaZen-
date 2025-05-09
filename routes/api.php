@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +29,12 @@ Route::middleware('auth:api')->group(function () {
     });
     
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+
+    Route::apiResource('courses', CourseController::class);
+    Route::apiResource('teachers', TeacherController::class);
+    Route::apiResource('students', StudentController::class);
+    Route::apiResource('subscriptions', SubscriptionController::class);
+    
     
 });
 

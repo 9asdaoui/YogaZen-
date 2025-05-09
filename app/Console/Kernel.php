@@ -12,7 +12,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // $schedule->command('yogazen:subscription-reminders')
+        //          ->dailyAt('8:00')
+        //          ->appendOutputTo(storage_path('logs/subscription-reminders.log'));
+        
+        // $schedule->command('yogazen:archive-inactive-accounts')
+        //          ->daily()
+        //          ->appendOutputTo(storage_path('logs/account-archiving.log'));    
     }
 
     /**

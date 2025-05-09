@@ -13,23 +13,23 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+
+        return response()->json($courses);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        $course = Course::create($request->validated());
+
+        return response()->json([
+            'message' => 'Course created successfully',
+            'course' => $course
+        ], 201);
     }
 
     /**
@@ -37,15 +37,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course)
-    {
-        //
+        return response()->json($course);
     }
 
     /**
@@ -53,7 +45,12 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $course->update($request->validated());
+
+        return response()->json([
+            'message' => 'Course updated successfully',
+            'course' => $course
+        ]);
     }
 
     /**
@@ -61,6 +58,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return response()->json([
+            'message' => 'Course deleted successfully'
+        ]);
     }
 }
