@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->string('type');
+            $table->timestamp('started_at');
+            $table->timestamp('expires_at');
             $table->timestamps();
         });
     }
