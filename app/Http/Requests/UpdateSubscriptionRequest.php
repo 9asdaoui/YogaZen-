@@ -11,7 +11,7 @@ class UpdateSubscriptionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'student_id' => 'sometimes|exists:students,id',
+            'type' => 'sometimes|string|max:255',
+            'started_at' => 'sometimes|date',
+            'expires_at' => 'sometimes|date|after:started_at',
         ];
     }
 }

@@ -31,10 +31,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
     Route::apiResource('courses', CourseController::class);
-    Route::apiResource('teachers', TeacherController::class);
-    Route::apiResource('students', StudentController::class);
     Route::apiResource('subscriptions', SubscriptionController::class);
-    
-    
+
+
 });
 

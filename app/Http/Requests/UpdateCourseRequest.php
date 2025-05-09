@@ -27,7 +27,6 @@ class UpdateCourseRequest extends FormRequest
             'level' => 'sometimes|required|in:beginner,intermediate,advanced',
             'duration' => 'sometimes|required|integer|min:1',
             'price' => 'sometimes|required|numeric|min:0',
-            'teacher_id' => 'sometimes|required|exists:teachers,id',
         ];
     }
 }

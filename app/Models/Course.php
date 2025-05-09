@@ -16,7 +16,6 @@ class Course extends Model
         'level',
         'duration',
         'price',
-        'teacher_id',
     ];
 
     public function teacher()
