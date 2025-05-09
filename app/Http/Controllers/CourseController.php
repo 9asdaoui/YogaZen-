@@ -26,6 +26,7 @@ class CourseController extends Controller
     {
         $course = Course::create($request->validated());
 
+        
         return response()->json([
             'message' => 'Course created successfully',
             'course' => $course
